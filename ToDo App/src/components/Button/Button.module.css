@@ -1,28 +1,39 @@
-.addTask,
-.delete {
+.btn{
   border: none;
   padding: .625rem 1.25rem;
   font-weight: 600;
   cursor: pointer;
   border-radius: .5rem;
   transition: background-color 0.3s ease;
+  color: white;
 }
 
-.addTask {
+.addTaskBtn {
   background-color: white;
   color: #333;
 }
 
-.addTask:hover {
+.addTaskBtn:hover {
   background-color: #e9f3ff;
   color: #333;
 }
 
-.delete {
+.deleteBtn {
   background-color: #e74c3c;
-  color: white;
 }
 
-.delete:hover {
+.deleteBtn:hover {
   background-color: #c0392b;
+}
+
+.editBtn{
+  background-color: #f7bb07;
+  color: #080808;
+}
+.editBtn:hover{
+  background-color: #dfa908;
+
+}
+.cancelBtn{
+  background-color: #080808;
 }

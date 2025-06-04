@@ -6,6 +6,8 @@ import styles from "./Home.module.css";
 const Home = () => {
   const [todos, setTodos] = useState([]);
   const [task, setTask] = useState("");
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState("");
 
   const addTodo = () => {
     if (task.trim()) {
@@ -32,6 +34,33 @@ const Home = () => {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       addTodo();
+    }
+  };
+
+  const handleEditKeyPress = (e, id) => {
+    if (e.key === "Enter") {
+      saveEdit(id);
+    }
+  };
+
+  const startEditing = (id, currentText) => {
+    setEditId(id);
+    setEditText(currentText);
+  };
+
+  const cancelEdit = () => {
+    setEditId(null);
+    setEditText("");
+  };
+
+  const saveEdit = (id) => {
+    if (editText.trim()) {
+      setTodos((prev) =>
+        prev.map((todo) =>
+          todo.id === id ? { ...todo, text: editText.trim() } : todo
+        )
+      );
+      cancelEdit();
     }
   };
 
@@ -71,17 +100,53 @@ const Home = () => {
                   onChange={() => toggleTodo(todo.id)}
                   className={styles.checkbox}
                 />
-                <span
-                  className={`${todo.completed ? styles.completedText : ""}`}
-                >
-                  {todo.text}
-                </span>
+                {editId === todo.id ? (
+                  <Input
+                    id={`edit-${todo.id}`}
+                    editmode={true}
+                    type="text"
+                    value={editText}
+                    setValue={setEditText}
+                    onKeyDown={(e) => handleEditKeyPress(e, todo.id)}
+                  />
+                ) : (
+                  <span
+                    className={`${styles.todoText} ${todo.completed ? styles.completedText : ""}`}
+                  >
+                    {todo.text}
+                  </span>
+                )}
               </div>
-              <Button
-                role="deleteBtn"
-                text="Delete"
-                onClick={() => deleteTodo(todo.id)}
-              />
+
+              <div className={styles.actions}>
+                {editId === todo.id ? (
+                  <>
+                    <Button
+                      role="addTask"
+                      text="Save"
+                      onClick={() => saveEdit(todo.id)}
+                    />
+                    <Button
+                      role="cancel"
+                      text="Cancel"
+                      onClick={cancelEdit}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      role="edit"
+                      text="Edit"
+                      onClick={() => startEditing(todo.id, todo.text)}
+                    />
+                    <Button
+                      role="deleteBtn"
+                      text="Delete"
+                      onClick={() => deleteTodo(todo.id)}
+                    />
+                  </>
+                )}
+              </div>
             </li>
           ))}
         </ul>
