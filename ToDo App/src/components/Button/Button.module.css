@@ -1,0 +1,28 @@
+.addTask,
+.delete {
+  border: none;
+  padding: .625rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: .5rem;
+  transition: background-color 0.3s ease;
+}
+
+.addTask {
+  background-color: white;
+  color: #333;
+}
+
+.addTask:hover {
+  background-color: #e9f3ff;
+  color: #333;
+}
+
+.delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.delete:hover {
+  background-color: #c0392b;
+}

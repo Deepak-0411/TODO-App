@@ -1,0 +1,65 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  padding: 1.25rem;
+  color: #f1f1f1;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+.heading {
+  font-size: 3.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+}
+
+.todoList {
+  list-style: none;
+  width: clamp(15rem, 65vw, 45rem);
+  overflow: auto;
+}
+
+.todoItem {
+  background-color: #2c2c2c;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid transparent;
+  color: #f1f1f1;
+}
+
+.completed {
+  border-left: 0.25rem solid #4caf50;
+  color: #888;
+}
+.completedText {
+  text-decoration: line-through;
+}
+
+.todoLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.checkbox {
+  accent-color: #4caf50;
+  cursor: pointer;
+}
+.noTask {
+  font-size: 7rem;
+  font-weight: 700;
+  color: #ffffff14;
+  text-align: center;
+  margin-top: 7rem;
+}
